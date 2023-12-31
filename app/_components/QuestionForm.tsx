@@ -1,24 +1,39 @@
 'use client';
 
-import { ChangeEvent, FormEvent, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { ChangeEvent, FormEvent, useCallback } from 'react';
+
+import useQuestionStore from '@/_stores/useQuestionStore';
 
 export default function QuestionForm() {
-  const [question, setQuestion] = useState('');
+  const { push } = useRouter();
+  const { question, setQuestion } = useQuestionStore();
 
-  function handleChange(e: ChangeEvent<HTMLTextAreaElement>) {
-    setQuestion(e.target.value);
-  }
+  const handleChange = useCallback(
+    (e: ChangeEvent<HTMLTextAreaElement>) => {
+      setQuestion(e.target.value);
+    },
+    [setQuestion]
+  );
 
-  function handleCancel() {
+  const handleCancel = useCallback(() => {
+    if (question.length === 0) return;
     setQuestion('');
-  }
+  }, [question.length, setQuestion]);
 
-  function handleSubmit(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault(); // 페이지 리로딩 방지
+  const handleSubmit = useCallback(
+    (e: FormEvent<HTMLFormElement>) => {
+      e.preventDefault(); // 페이지 리로딩 방지
 
-    alert(`다음과 같이 질문을 적어주셨습니다.\n${question}`);
-    setQuestion(''); // 상태 초기화
-  }
+      if (question.length === 0) {
+        alert('알고 싶은 것에 대한 질문을 적어주세요.');
+        return;
+      }
+
+      push(`/start`);
+    },
+    [push, question.length]
+  );
 
   return (
     <form onSubmit={handleSubmit}>

@@ -1,5 +1,5 @@
-import QuestionForm from './_components/QuestionForm';
-import { ABOUT } from './_constants/about';
+import QuestionForm from '@/_components/QuestionForm';
+import { ABOUT } from '@/_constants/about';
 
 export default function Home() {
   return (
