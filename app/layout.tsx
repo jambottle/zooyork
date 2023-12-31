@@ -18,8 +18,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        {children}
+      <body className={`${inter.className} antialiased`}>
+        <main className="zooyork-container zooyork-layout bg-white">
+          {children}
+        </main>
         <Analytics />
       </body>
     </html>

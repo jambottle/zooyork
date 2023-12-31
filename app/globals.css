@@ -25,3 +25,13 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+@layer components {
+  .zooyork-container {
+    @apply w-full sm:w-[428px] md:w-[428px] lg:w-[428px] xl:w-[428px];
+  }
+
+  .zooyork-layout {
+    @apply h-screen mx-auto px-[22px];
+  }
+}
