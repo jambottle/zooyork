@@ -6,27 +6,21 @@ export const enum CoinSide {
 }
 
 class Coin {
-  private _side: CoinSide | undefined;
+  private _side: CoinSide;
 
   constructor() {
-    this._side = undefined;
+    this._side = Coin.getRandomCoinSide();
   }
 
   get side(): CoinSide {
-    if (this._side === undefined) {
-      throw new Error(`Cannot get 'side' until you toss this Coin`);
-    }
     return this._side;
   }
 
-  toss(): void {
-    if (this._side !== undefined) {
-      throw new Error(`Cannot toss this Coin again`);
-    }
+  private static getRandomCoinSide(): CoinSide {
     if (Math.random() >= 0.5) {
-      this._side = CoinSide.Heads;
+      return CoinSide.Heads;
     } else {
-      this._side = CoinSide.Tails;
+      return CoinSide.Tails;
     }
   }
 }
