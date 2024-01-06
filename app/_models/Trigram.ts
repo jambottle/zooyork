@@ -3,14 +3,14 @@
 import Line from '@/_models/Line';
 
 export const enum TrigramType {
-  Heaven = 0,
-  Lake = 1,
-  Fire = 2,
-  Thunder = 3,
-  Wind = 4,
-  Water = 5,
-  Mountain = 6,
-  Earth = 7,
+  Heaven = 'Heaven',
+  Lake = 'Lake',
+  Fire = 'Fire',
+  Thunder = 'Thunder',
+  Wind = 'Wind',
+  Water = 'Water',
+  Mountain = 'Mountain',
+  Earth = 'Earth',
 }
 
 class Trigram {
