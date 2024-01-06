@@ -22,7 +22,7 @@ class Line {
     if (!_coin1 || !_coin2 || !_coin3) {
       throw new Error(`Coins cannot be null or undefined`);
     }
-    this._type = Line.getLineTypeByCoins(_coin1, _coin2, _coin3);
+    this._type = this._getLineTypeByCoins(_coin1, _coin2, _coin3);
     this._isYang =
       this._type === LineType.LargeYang || this._type === LineType.SmallYang;
     this._isLarge =
@@ -41,7 +41,7 @@ class Line {
     return this._isLarge;
   }
 
-  private static getLineTypeByCoins(
+  private _getLineTypeByCoins(
     _coin1: Coin,
     _coin2: Coin,
     _coin3: Coin
