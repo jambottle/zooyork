@@ -32,6 +32,6 @@ body {
   }
 
   .zooyork-layout {
-    @apply h-screen mx-auto px-[22px];
+    @apply min-h-screen mx-auto px-[22px];
   }
 }
