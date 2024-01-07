@@ -3,11 +3,12 @@
 import { useRouter } from 'next/navigation';
 import { ChangeEvent, FormEvent, useCallback } from 'react';
 
+import { EMPTY_STR } from '@/_constants/empty';
 import useQuestionStore from '@/_stores/useQuestionStore';
 
 export default function QuestionForm() {
   const { push } = useRouter();
-  const { question, setQuestion } = useQuestionStore();
+  const { question, setQuestion, resetQuestion } = useQuestionStore();
 
   const handleChange = useCallback(
     (e: ChangeEvent<HTMLTextAreaElement>) => {
@@ -17,22 +18,22 @@ export default function QuestionForm() {
   );
 
   const handleCancel = useCallback(() => {
-    if (question.length === 0) return;
-    setQuestion('');
-  }, [question.length, setQuestion]);
+    if (question === EMPTY_STR) return;
+    resetQuestion();
+  }, [question, resetQuestion]);
 
   const handleSubmit = useCallback(
     (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault(); // 페이지 리로딩 방지
 
-      if (question.length === 0) {
-        alert('알고 싶은 것에 대한 질문을 적어주세요.');
+      if (question === EMPTY_STR) {
+        alert(`알고 싶은 것에 대한 질문을 적어주세요.`);
         return;
       }
 
       push(`/start`);
     },
-    [push, question.length]
+    [push, question]
   );
 
   return (
